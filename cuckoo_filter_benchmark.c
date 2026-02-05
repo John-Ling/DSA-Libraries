@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    CuckooFilter* filter = LibCuckooFilter.create(10000000);
+    CuckooFilter* filter = LibCuckooFilter.create(10000000, DEFAULT_BUCKET_DEPTH, 7);
     FILE *fp = fopen(argv[1], "r");
     if (!fp) {
         perror("Error opening file");

@@ -12,14 +12,14 @@
 #define MAX_KICK_COUNT 500
 
 typedef struct {
-    uint32_t* buckets; // assuming a 7 bit fingerprint for 4 slots each, 32 bits can store all fingerprints
+    uint64_t* buckets;
     size_t storedFingerprintCount; // used for calculating load factor
     size_t bucketCount; // also known as m 
     size_t bucketDepth; // the number of fingerprints per bucket known as b
-    size_t keySize; // bit count for fingerprints also known as f 
+    size_t fingerprintSize; // bit count for fingerprints also known as f 
 } CuckooFilter;
 
-CuckooFilter* cf_create(unsigned int expectedElementCount);
+CuckooFilter* cf_create(size_t expectedElementCount, size_t bucketDepth, size_t fingerprintBitCount);
 bool cf_get_str(CuckooFilter* filter, const char* key);
 bool cf_get_chr(CuckooFilter* filter, char key);
 bool cf_get_int(CuckooFilter* filter, int key);
@@ -36,10 +36,10 @@ struct LibCuckooFilter_l {
      * Instantiate a new cuckoo filter 
      * @param expectedElementCount number of unique elements the filter expects to hold
      */
-    CuckooFilter* (*create)(unsigned int expectedElementCount);
+    CuckooFilter* (*create)(size_t expectedElementCount, size_t bucketDepth, size_t fingerprintBitCount);
     int (*set_str)(CuckooFilter* filter, const char* key);
     int (*set_chr)(CuckooFilter* filter, char key);
-    int (*set_int)(CuckooFilter* filter, int key);   
+    int (*set_int)(CuckooFilter* filter, int key); 
 
     bool (*get_str)(CuckooFilter* filter, const char* key);
     bool (*get_chr)(CuckooFilter* filter, char key);
