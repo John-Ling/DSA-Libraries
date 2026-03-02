@@ -14,6 +14,9 @@ else
 endif
 
 
+bfsanddfs:
+	$(CC) $(CFLAGS) $(LDFLAGS)  -o bin/bfs_and_dfs bfs_and_dfs.c -llinkedlist -lutils -lqueue -lstack
+
 linkedlist: 
 	$(CC) $(CFLAGS) $(LDFLAGS) -llinkedlist -lutils -o bin/linked_list linked_lists_example.c
 
@@ -65,6 +68,11 @@ libhashtable:
 	$(CC) $(CFLAGS) -fPIC -c LibHashTable/*.c -o LibHashTable/hash_table.o
 	$(CC) $(CFLAGS) $(LDFLAGS) -shared -o lib/libhashtable.so -llinkedlist -lutils LibHashTable/hash_table.o
 	rm LibHashTable/hash_table.o
+
+libstack:
+	$(CC) $(CFLAGS) -fPIC -c LibStack/*.c -o LibStack/stack.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -shared -o lib/libstack.so -llinkedlist -lutils LibStack/stack.o
+	rm LibStack/stack.o
 
 libbloomfilter:
 	$(CC) $(CFLAGS) -fPIC -c LibBloomFilter/*.c -o LibBloomFilter/bloom_filter.o

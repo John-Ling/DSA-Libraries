@@ -80,7 +80,7 @@ int s_pop(Stack* stack, void* out)
         // set value
         memcpy(out, stack->items->head->value, stack->items->dataSize);
     }
-    return LibLinkedList.delete(stack->items, 0);
+    return LibLinkedList.delete(stack->items, 0, free);
 }
 
 int s_peek(Stack* stack, void* out)

@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    HashTable* table = LibHashTable.create(STRING, 10000000, sizeof(unsigned char), free);
+    HashTable* table = LibHashTable.create(STRING, 5000000, sizeof(unsigned char), free);
     FILE *fp = fopen(argv[1], "r");
     if (!fp) {
         perror("Error opening file");

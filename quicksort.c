@@ -48,26 +48,21 @@ int quicksort(int arr[], const int n)
     return sort(arr, 0, n - 1);
 }
 
-// implementation of quicksort for use with quicksort()
 static int sort(int arr[], const int lowerIndex, const int upperIndex)
 {
-    // int pivotIndex = lomuto_partition(arr, lowerIndex, upperIndex);
+    if (lowerIndex >= upperIndex) 
+    {
+        return EXIT_SUCCESS;  // base case
+    }
+
     int leftPartitionLength = hoare_partition(arr, lowerIndex, upperIndex);
-
-    // for (int i = 0; i <= upperIndex; i++) 
-    // {
-    //     printf("%d ", arr[i]);
-    // }
-    // printf("\n");
-    // return 0;
-    // int pivotIndex = lowerIndex;
-
-    // run quicksort on left subarray
-    quicksort(arr, leftPartitionLength);
-
     
-    // run quicksort on right subarray
-    quicksort(arr, upperIndex - leftPartitionLength);
+    // Recursively sort the left partition
+    sort(arr, lowerIndex, lowerIndex + leftPartitionLength - 1);
+    
+    // Recursively sort the right partition
+    sort(arr, lowerIndex + leftPartitionLength, upperIndex);
+    
     return EXIT_SUCCESS;
 }
 
