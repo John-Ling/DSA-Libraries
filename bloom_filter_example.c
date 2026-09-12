@@ -24,6 +24,8 @@ int main(void)
     printf("%d \n", LibBloomFilter.get_chr(filter, 'H'));
     printf("%d \n", LibBloomFilter.get_chr(filter, 'I'));
     printf("%d \n", LibBloomFilter.get_chr(filter, 'J'));
+	printf("%d \n", LibBloomFilter.get_chr(filter, 'C'));
+
 
     LibBloomFilter.free(filter);
     return EXIT_SUCCESS;

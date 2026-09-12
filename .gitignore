@@ -5,3 +5,4 @@ test.*
 bin/
 *.txt
 *.zst
+lib/*.so
